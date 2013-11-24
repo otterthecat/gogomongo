@@ -23,9 +23,15 @@ var Document = require('../../lib/Document');
 
 describe('Document', function(){
 
+    var myDoc;
+
+    beforeEach(function(){
+
+        myDoc = new Document();
+    });
+
     it("should extend EventEmitter", function(){
 
-        var myDoc = new Document();
         myDoc.should.be.an.instanceOf(EventEmitter);
     });
 
@@ -33,7 +39,6 @@ describe('Document', function(){
 
         it("should have a .document property", function(){
 
-            var myDoc = new Document();
             myDoc.document.should.be.an('object');
 
             describe(".document", function(){
@@ -56,7 +61,6 @@ describe('Document', function(){
 
         it("should update document property with passed argument properties", function(){
 
-            var myDoc = new Document(mockDocument);
             myDoc.update(mockMixin).color.should.equal('red');
             myDoc.document.drink.should.equal('water');
         });
