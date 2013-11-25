@@ -36,15 +36,6 @@ describe('Relay', function(){
     describe("#addRelay()", function(){
 
         var mo = new mockObj();
-        mo.on('mocha:test', function(){
-            console.log("FOOBAR");
-        });
-        relay.on('blah', function(){
-
-            console.log("SHABANG");
-        });
-
-        mo.run('blah');
         relay.addRelay(mo);
         it("should add passed object to internal relays array", function(){
 
