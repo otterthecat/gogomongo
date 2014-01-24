@@ -10,11 +10,9 @@ var mockObj = function(){ this.name = "mock"};
 
 // modules to test
 // /////////////////////////////////////////////////////////
-var Relay = require('../../lib/Relay');
+var relay = require('../../lib/Relay');
 
 describe('Relay', function(){
-
-    var relay = new Relay();
 
     it("should inhert from EventEmitter", function(){
 
@@ -22,24 +20,22 @@ describe('Relay', function(){
     });
 
 
-    describe("#extend()", function(){
+    describe("#create()", function(){
 
-        relay.extend(mockObj);
+        var O = relay.create();
 
         it("should take passed object and have it inherit Relay", function(){
 
-            var mo = new mockObj();
-            mo.should.be.instanceOf(Relay);
+            O.should.be.instanceOf(Function);
         });
     });
 
-    describe("#addRelay()", function(){
+    describe("#register()", function(){
 
-        var mo = new mockObj();
-        relay.addRelay(mo);
-        it("should add passed object to internal relays array", function(){
+        relay.register('newReg', function(){console.log('test');});
+        it("add new namespaced event with function", function(){
 
-            relay.relays.should.include(mo);
+            relay.relays['newReg'].should.be.ok;
         });
     });
 
